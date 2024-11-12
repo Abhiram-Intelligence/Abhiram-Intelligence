@@ -14,19 +14,33 @@
         h1 {
             color: #5b3927;
         }
+        .tree {
+            display: flex;
+            justify-content: center;
+        }
         .generation {
-            margin: 20px 0;
+            text-align: left;
+            padding-left: 20px;
+            cursor: pointer;
         }
         .member {
-            margin: 5px;
-            padding: 10px;
-            border: 1px solid #5b3927;
-            display: inline-block;
-            background-color: #fff;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            margin: 5px 0;
+            padding-left: 15px;
         }
-        .member strong {
-            color: #5b3927;
+        .children {
+            display: none;
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 1px solid #ccc;
+        }
+        .generation > span::before {
+            content: "►";
+            display: inline-block;
+            width: 15px;
+            transition: transform 0.3s ease;
+        }
+        .generation.expanded > span::before {
+            transform: rotate(90deg);
         }
     </style>
 </head>
@@ -34,75 +48,100 @@
 
     <h1>Mandimane Family Tree</h1>
 
-    <div class="generation">
-        <h2>1st Generation</h2>
-        <div class="member"><strong>Jule Gowda</strong></div>
-        <div class="member"><strong>Thayamma</strong></div>
+    <div class="tree">
+        <div class="generation" onclick="toggleChildren(this)">
+            <span>Jule Gowda & Thayamma</span>
+            <div class="children">
+                <div class="generation" onclick="toggleChildren(this)">
+                    <span>Gopal</span>
+                    <div class="children">
+                        <div class="member">Ramesh</div>
+                        <div class="member">Rajesh</div>
+                        <div class="member">Rekha</div>
+                        <div class="member">Radha</div>
+                    </div>
+                </div>
+                <div class="generation" onclick="toggleChildren(this)">
+                    <span>Chandregowda</span>
+                    <div class="children">
+                        <div class="member">Guru</div>
+                        <div class="member">Rashmi</div>
+                        <div class="member">Roopa</div>
+                        <div class="member">Ramya</div>
+                        <div class="member">Soumya</div>
+                    </div>
+                </div>
+                <div class="generation" onclick="toggleChildren(this)">
+                    <span>Laxman</span>
+                    <div class="children">
+                        <div class="member">Sai Charan</div>
+                        <div class="member">Achinthya</div>
+                        <div class="member">Sahitya</div>
+                        <div class="member">Lalithya</div>
+                    </div>
+                </div>
+                <div class="generation" onclick="toggleChildren(this)">
+                    <span>Jayaram</span>
+                    <div class="children">
+                        <div class="member">Amoolya</div>
+                    </div>
+                </div>
+                <div class="generation" onclick="toggleChildren(this)">
+                    <span>Sharada</span>
+                    <div class="children">
+                        <div class="member">Suresh</div>
+                        <div class="member">Sathish</div>
+                        <div class="member">Sudharshan</div>
+                        <div class="member">Sudha</div>
+                    </div>
+                </div>
+                <div class="generation" onclick="toggleChildren(this)">
+                    <span>Subhadra</span>
+                    <div class="children">
+                        <div class="member">Mohan</div>
+                        <div class="member">Prakash</div>
+                        <div class="member">Madhu</div>
+                        <div class="member">Mamatha</div>
+                    </div>
+                </div>
+                <div class="generation" onclick="toggleChildren(this)">
+                    <span>Kasturi</span>
+                    <div class="children">
+                        <div class="member">Puneeth</div>
+                        <div class="member">Pallavi</div>
+                        <div class="member">Pavana</div>
+                        <div class="member">Panchami</div>
+                    </div>
+                </div>
+                <div class="generation" onclick="toggleChildren(this)">
+                    <span>Bhagya</span>
+                    <div class="children">
+                        <div class="member">Kiriti</div>
+                        <div class="member">Kirthini</div>
+                    </div>
+                </div>
+                <div class="generation" onclick="toggleChildren(this)">
+                    <span>Rohini</span>
+                    <div class="children">
+                        <div class="member">Abhiram</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="generation">
-        <h2>2nd Generation</h2>
-        <div class="member"><strong>Gopal</strong></div>
-        <div class="member"><strong>Chandregowda</strong></div>
-        <div class="member"><strong>Laxman</strong></div>
-        <div class="member"><strong>Jayaram</strong></div>
-        <div class="member"><strong>Sharada</strong></div>
-        <div class="member"><strong>Subhadra</strong></div>
-        <div class="member"><strong>Kasturi</strong></div>
-        <div class="member"><strong>Bhagya</strong></div>
-        <div class="member"><strong>Anusuya</strong></div>
-        <div class="member"><strong>Rohini</strong></div>
-    </div>
+    <script>
+        function toggleChildren(element) {
+            const children = element.querySelector('.children');
+            if (children) {
+                children.style.display = children.style.display === 'none' ? 'block' : 'none';
+                element.classList.toggle('expanded');
+            }
+        }
 
-    <div class="generation">
-        <h2>3rd Generation</h2>
-        <!-- Gopal’s children -->
-        <div class="member"><strong>Ramesh</strong></div>
-        <div class="member"><strong>Rajesh</strong></div>
-        <div class="member"><strong>Rekha</strong></div>
-        <div class="member"><strong>Radha</strong></div>
-        
-        <!-- Chandregowda’s children -->
-        <div class="member"><strong>Guru</strong></div>
-        <div class="member"><strong>Rashmi</strong></div>
-        <div class="member"><strong>Roopa</strong></div>
-        <div class="member"><strong>Ramya</strong></div>
-        <div class="member"><strong>Soumya</strong></div>
-        
-        <!-- Laxman’s children -->
-        <div class="member"><strong>Sai Charan</strong></div>
-        <div class="member"><strong>Achinthya</strong></div>
-        <div class="member"><strong>Sahitya</strong></div>
-        <div class="member"><strong>Lalithya</strong></div>
-        
-        <!-- Jayaram’s child -->
-        <div class="member"><strong>Amoolya</strong></div>
-        
-        <!-- Sharada’s children -->
-        <div class="member"><strong>Suresh</strong></div>
-        <div class="member"><strong>Sathish</strong></div>
-        <div class="member"><strong>Sudharshan</strong></div>
-        <div class="member"><strong>Sudha</strong></div>
-        
-        <!-- Subhadra’s children -->
-        <div class="member"><strong>Mohan</strong></div>
-        <div class="member"><strong>Prakash</strong></div>
-        <div class="member"><strong>Madhu</strong></div>
-        <div class="member"><strong>Mamatha</strong></div>
-        
-        <!-- Kasturi’s children -->
-        <div class="member"><strong>Puneeth</strong></div>
-        <div class="member"><strong>Pallavi</strong></div>
-        <div class="member"><strong>Pavana</strong></div>
-        <div class="member"><strong>Panchami</strong></div>
-        
-        <!-- Bhagya’s children -->
-        <div class="member"><strong>Kiriti</strong></div>
-        <div class="member"><strong>Kirthini</strong></div>
-        
-        <!-- Rohini’s child -->
-        <div class="member"><strong>Abhiram</strong></div>
-    </div>
+        // Initialize to collapse all generations
+        document.querySelectorAll('.children').forEach(child => child.style.display = 'none');
+    </script>
 
 </body>
 </html>
